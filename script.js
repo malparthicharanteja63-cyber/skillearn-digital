@@ -128,240 +128,167 @@ function openDemoSite(demoId) {
 function showDemo(demoId) {
     const demos = {
         demo1: {
-            brand: "SkillEarn Business",
-            type: "Business Website • Real Work Sample",
-            title: "A Website That Makes Your Business Look Professional",
-            text: "A complete business website concept designed to build trust, explain your services clearly and turn visitors into real enquiries.",
-            nav: ["Home", "Services", "About", "Contact"],
-            cards: ["Professional Web Design", "Mobile-First Experience", "Lead-Focused Contact"],
-            labels: ["01", "02", "03"]
+            brand:"SkillEarn Business", type:"Business Website",
+            title:"A Website That Makes Your Business Look Professional",
+            text:"A complete business website concept designed to build trust and turn visitors into enquiries.",
+            nav:["Home","Services","About","Contact"],
+            cards:["Professional Web Design","Mobile-First Experience","Lead-Focused Contact"],
+            labels:["01","02","03"], variant:"business"
         },
         demo2: {
-            brand: "BusinessPro",
-            type: "Corporate Website",
-            title: "Professional Business Website",
-            text: "A polished corporate experience for companies that want a stronger digital presence.",
-            nav: ["Home", "About", "Services", "Contact"],
-            cards: ["Company Profile", "Business Services", "Contact Team"],
-            labels: ["01", "02", "03"]
+            brand:"BusinessPro", type:"Corporate Website",
+            title:"Professional Business Website",
+            text:"A polished corporate website concept for companies that want a stronger digital presence.",
+            nav:["Home","Company","Services","Contact"],
+            cards:["Company Profile","Business Services","Contact Team"],
+            labels:["01","02","03"], variant:"corporate"
         },
         demo3: {
-            brand: "MyPortfolio",
-            type: "Portfolio Website",
-            title: "Show Your Work With Confidence",
-            text: "A clean portfolio website for freelancers, developers, designers and professionals.",
-            nav: ["Home", "Projects", "Skills", "Contact"],
-            cards: ["Featured Projects", "My Skills", "Experience"],
-            labels: ["01", "02", "03"]
+            brand:"MyPortfolio", type:"Portfolio Website",
+            title:"Show Your Work With Confidence",
+            text:"A clean portfolio concept for freelancers, developers, designers and professionals.",
+            nav:["Home","Projects","Skills","Contact"],
+            cards:["Featured Projects","My Skills","Experience"],
+            labels:["01","02","03"], variant:"portfolio"
         },
         demo4: {
-            brand: "ShopEasy",
-            type: "E-Commerce Website",
-            title: "Everything You Need",
-            text: "A modern online store experience built to make products easy to discover and buy.",
-            nav: ["Home", "Products", "Offers", "Cart"],
-            cards: ["New Products", "Best Sellers", "Special Offers"],
-            labels: ["01", "02", "03"]
+            brand:"ShopEasy", type:"E-Commerce Website",
+            title:"Everything You Need In One Store",
+            text:"A modern online-store concept with products, offers, shopping and conversion-focused sections.",
+            nav:["Home","Products","Offers","Cart"],
+            cards:["New Products","Best Sellers","Special Offers"],
+            labels:["NEW","TOP","SALE"], variant:"shop"
         },
         demo5: {
-            brand: "AppFlow",
-            type: "Web Application",
-            title: "Powerful Web Application",
-            text: "A clean application dashboard designed to organize data, users and business activity.",
-            nav: ["Dashboard", "Features", "Users", "Settings"],
-            cards: ["Dashboard", "Analytics", "User Management"],
-            labels: ["01", "02", "03"]
+            brand:"AppFlow", type:"Web Application",
+            title:"Powerful Business Dashboard",
+            text:"A web application concept for managing users, activity, analytics and business operations.",
+            nav:["Dashboard","Analytics","Users","Settings"],
+            cards:["Dashboard","Analytics","User Management"],
+            labels:["01","02","03"], variant:"app"
         },
         demo6: {
-            brand: "CreatorPro",
-            type: "Creator Website",
-            title: "Make Every Click Count",
-            text: "Clean and professional thumbnail services created for YouTubers and content creators.",
-            nav: ["Home", "Designs", "Packages", "Contact"],
-            cards: ["Simple", "Clean", "Clickable"],
-            labels: ["01", "02", "03"]
+            brand:"CreatorPro", type:"Thumbnail Design",
+            title:"Clean Thumbnails For Serious Creators",
+            text:"A creator-focused design portfolio showing clean, readable and professional thumbnail concepts.",
+            nav:["Home","Designs","Packages","Contact"],
+            cards:["Simple","Clean","Clickable"],
+            labels:["01","02","03"], variant:"creator"
         },
         demo7: {
-            brand: "CreatorPro",
-            type: "Creator Website",
-            title: "Stand Out From The Crowd",
-            text: "Bold visual design created to help creators make their content impossible to ignore.",
-            nav: ["Home", "Designs", "Packages", "Contact"],
-            cards: ["Bold", "Modern", "Engaging"],
-            labels: ["01", "02", "03"]
+            brand:"CreatorPro", type:"Bold Thumbnail Design",
+            title:"Stand Out From The Crowd",
+            text:"Bold thumbnail concepts designed to grab attention and make creator content stand out.",
+            nav:["Home","Designs","Packages","Contact"],
+            cards:["Bold","Modern","Engaging"],
+            labels:["01","02","03"], variant:"bold"
         },
         demo8: {
-            brand: "CTR Studio",
-            type: "CTR Design Studio",
-            title: "Turn Views Into Clicks",
-            text: "Thumbnail design focused on attention, clarity and stronger click-through potential.",
-            nav: ["Home", "Portfolio", "Packages", "Contact"],
-            cards: ["CTR Focus", "Premium", "Eye-catching"],
-            labels: ["01", "02", "03"]
+            brand:"CTR Studio", type:"CTR Design Studio",
+            title:"Turn Views Into Clicks",
+            text:"A high-impact thumbnail portfolio concept focused on attention, clarity and stronger click potential.",
+            nav:["Home","Portfolio","Packages","Contact"],
+            cards:["CTR Focus","Premium","Eye-Catching"],
+            labels:["01","02","03"], variant:"ctr"
         },
         demo9: {
-            brand: "ThumbnailPack",
-            type: "Thumbnail Package",
-            title: "10 Thumbnails. One Brand.",
-            text: "A consistent thumbnail package designed to give your entire channel a professional identity.",
-            nav: ["Home", "Portfolio", "Pricing", "Contact"],
-            cards: ["10 Designs", "Consistent", "Creator Ready"],
-            labels: ["10", "01", "YT"]
+            brand:"ThumbnailPack", type:"10 Thumbnail Package",
+            title:"10 Thumbnails. One Strong Brand.",
+            text:"A package showcase designed to give an entire YouTube channel a consistent professional identity.",
+            nav:["Home","Portfolio","Pricing","Contact"],
+            cards:["10 Designs","Consistent","Creator Ready"],
+            labels:["10","01","YT"], variant:"pack"
         },
         demo10: {
-            brand: "CreativeCare",
-            type: "Monthly Creative Service",
-            title: "Your Monthly Creative Partner",
-            text: "Regular creative support for creators and businesses that need fresh designs every month.",
-            nav: ["Home", "Services", "Plans", "Contact"],
-            cards: ["Monthly", "Creative", "Support"],
-            labels: ["01", "02", "03"]
+            brand:"CreativeCare", type:"Monthly Creative Service",
+            title:"Your Monthly Creative Partner",
+            text:"A recurring creative-service concept for businesses and creators that need fresh designs every month.",
+            nav:["Home","Services","Plans","Contact"],
+            cards:["Monthly","Creative","Support"],
+            labels:["01","02","03"], variant:"monthly"
         },
         demo11: {
-            brand: "PremiumStudio",
-            type: "Premium Creative Agency",
-            title: "Premium Creative Service",
-            text: "Priority creative support for serious creators and businesses that want premium results.",
-            nav: ["Home", "Services", "Plans", "Contact"],
-            cards: ["Premium", "Monthly", "Priority"],
-            labels: ["01", "02", "03"]
+            brand:"PremiumStudio", type:"Premium Creative Agency",
+            title:"Premium Creative Service",
+            text:"A premium agency concept for serious creators and businesses that want priority creative support.",
+            nav:["Home","Services","Plans","Contact"],
+            cards:["Premium","Monthly","Priority"],
+            labels:["01","02","03"], variant:"premium"
         }
     };
 
     const demo = demos[demoId];
     if (!demo) return;
 
-    const themes = {
-        demo1: "demo-business",
-        demo2: "demo-corporate",
-        demo3: "demo-portfolio",
-        demo4: "demo-shop",
-        demo5: "demo-app",
-        demo6: "demo-creator",
-        demo7: "demo-bold",
-        demo8: "demo-ctr",
-        demo9: "demo-pack",
-        demo10: "demo-monthly",
-        demo11: "demo-premium"
+    const visuals = {
+        business:`<div class="demo-showcase business-showcase"><div class="showcase-badge">TRUSTED BUSINESS</div><div class="showcase-title">Grow Your Business Online</div><div class="showcase-lines"><span></span><span></span></div><div class="showcase-buttons"><i>Get Started</i><i>View Services</i></div></div>`,
+        corporate:`<div class="demo-showcase corporate-showcase"><div class="showcase-stat-row"><b>12+</b><b>250+</b><b>98%</b></div><div class="showcase-title">Built For Growing Companies</div><div class="showcase-lines"><span></span><span></span><span></span></div></div>`,
+        portfolio:`<div class="demo-showcase portfolio-showcase"><div class="portfolio-photo">PROJECT<br>01</div><div class="showcase-title">Creative Portfolio</div><div class="portfolio-tags"><i>Branding</i><i>Web</i><i>Design</i></div></div>`,
+        shop:`<div class="demo-showcase shop-showcase"><div class="shop-products"><i>PRODUCT</i><i>PRODUCT</i><i>PRODUCT</i></div><div class="showcase-title">Discover Something Great</div><div class="showcase-buttons"><i>Shop Now</i><i>View Offers</i></div></div>`,
+        app:`<div class="demo-showcase app-showcase"><div class="app-sidebar">DASHBOARD<br>ANALYTICS<br>USERS<br>SETTINGS</div><div class="app-main"><div class="app-metrics"><i>1,284</i><i>₹48.2K</i><i>+24%</i></div><div class="app-chart"></div></div></div>`,
+        creator:`<div class="demo-showcase creator-showcase"><div class="thumbnail-stack"><i>VIDEO<br>IDEA</i><i>NEW<br>VIDEO</i><i>TOP<br>10</i></div><div class="showcase-title">Creator Thumbnail Studio</div></div>`,
+        bold:`<div class="demo-showcase bold-showcase"><div class="bold-word">MAKE<br>THEM<br>STOP.</div><div class="showcase-buttons"><i>See Designs</i><i>Get Package</i></div></div>`,
+        ctr:`<div class="demo-showcase ctr-showcase"><div class="ctr-card"><small>CTR DESIGN</small><strong>MORE<br>CLICKS</strong><span>ATTENTION → INTEREST → ACTION</span></div><div class="ctr-meter">CLICK POTENTIAL</div></div>`,
+        pack:`<div class="demo-showcase pack-showcase"><div class="pack-grid"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i><i>06</i></div><div class="showcase-title">10 Thumbnail Collection</div></div>`,
+        monthly:`<div class="demo-showcase monthly-showcase"><div class="plan-head">MONTHLY CREATIVE</div><div class="plan-price">₹9,999<span>/month</span></div><div class="plan-list"><i>Fresh Designs</i><i>Priority Support</i><i>Consistent Branding</i></div></div>`,
+        premium:`<div class="demo-showcase premium-showcase"><div class="premium-badge">PREMIUM</div><div class="showcase-title">Creative Support Without The Stress</div><div class="premium-items"><i>Priority</i><i>Strategy</i><i>Quality</i></div></div>`
     };
 
-    document.getElementById("demoPreview").innerHTML = `
-        <div class="real-demo-site ${themes[demoId]}">
+    const theme = "demo-" + demo.variant;
 
+    document.getElementById("demoPreview").innerHTML = `
+        <div class="real-demo-site ${theme}">
             <header class="real-demo-header">
                 <div class="real-demo-brand">${demo.brand}</div>
-
                 <nav>
-                    ${demo.nav.map(item =>
-                        `<button type="button" onclick="demoMessage('${item}')">${item}</button>`
-                    ).join("")}
+                    ${demo.nav.map(item => `<button type="button" onclick="demoMessage('${item}')">${item}</button>`).join("")}
                 </nav>
-
-                <button type="button" class="demo-top-button"
-                    onclick="demoWhatsApp('${demo.title}')">
-                    Start Project
-                </button>
+                <button type="button" class="demo-top-button" onclick="demoWhatsApp('${demo.title}')">Start Project</button>
             </header>
 
             <section class="real-demo-hero">
-
                 <div class="demo-hero-copy">
                     <span class="badge">${demo.type}</span>
-
                     <h1>${demo.title}</h1>
-
                     <p>${demo.text}</p>
-
                     <div class="demo-actions">
-                        <button type="button"
-                            class="real-demo-cta"
-                            onclick="demoWhatsApp('${demo.title}')">
-                            Get Started →
-                        </button>
-
-                        <button type="button"
-                            class="demo-secondary"
-                            onclick="demoMessage('${demo.nav[1]}')">
-                            Explore ${demo.nav[1]}
-                        </button>
+                        <button type="button" class="real-demo-cta" onclick="demoWhatsApp('${demo.title}')">Get Started →</button>
+                        <button type="button" class="demo-secondary" onclick="demoMessage('${demo.nav[1]}')">Explore ${demo.nav[1]}</button>
                     </div>
                 </div>
-
-                <div class="demo-visual">
-                    <div class="demo-browser">
-                        <div class="browser-bar">
-                            <span></span><span></span><span></span>
-                        </div>
-
-                        <div class="browser-content">
-                            <div class="visual-line large"></div>
-                            <div class="visual-line"></div>
-                            <div class="visual-grid">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="demo-visual">${visuals[demo.variant]}</div>
             </section>
 
             <section class="real-demo-features">
-
                 <div class="demo-section-heading">
-                    <span>WHAT WE OFFER</span>
-                    <h2>Built for your goals</h2>
+                    <span>FEATURED SECTIONS</span>
+                    <h2>Designed around your goals</h2>
                 </div>
-
                 <div class="demo-feature-grid">
-
-                    ${demo.cards.map((card, index) => `
+                    ${demo.cards.map((card,index) => `
                         <article class="real-demo-card">
-
-                            <div class="demo-icon">
-                                ${demo.labels[index]}
-                            </div>
-
+                            <div class="demo-icon">${demo.labels[index]}</div>
                             <h3>${card}</h3>
-
-                            <p>
-                                Professional quality designed around your
-                                business, audience and goals.
-                            </p>
-
-                            <button type="button"
-                                onclick="demoMessage('${card}')">
-                                Learn More →
-                            </button>
-
+                            <p>Professional quality designed around your audience, brand and business goals.</p>
+                            <button type="button" onclick="demoMessage('${card}')">Explore →</button>
                         </article>
                     `).join("")}
-
                 </div>
-
             </section>
 
             <section class="demo-bottom-cta">
-
                 <div>
                     <span>READY TO BUILD?</span>
-                    <h2>Let's create your website.</h2>
+                    <h2>Let's create something professional.</h2>
                     <p>Tell SkillEarn Digital what you need and we'll discuss your project.</p>
                 </div>
-
-                <button type="button"
-                    onclick="demoWhatsApp('${demo.title}')">
-                    Get Started →
-                </button>
-
+                <button type="button" onclick="demoWhatsApp('${demo.title}')">Get Started →</button>
             </section>
 
             <footer class="real-demo-footer">
                 <strong>${demo.brand}</strong>
                 <p>Website preview created by SkillEarn Digital</p>
             </footer>
-
         </div>
     `;
 
