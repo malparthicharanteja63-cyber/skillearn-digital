@@ -358,13 +358,3 @@ function demoWhatsApp(service) {
 window.openDemoTest = function(){
     alert("SkillEarn Demo JavaScript is working");
 };
-
-/* AUTO OPEN DEMO FROM URL */
-document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const demoId = params.get("demo");
-
-    if (demoId && /^demo([1-5])$/.test(demoId)) {
-        setTimeout(() => openDemoSite(demoId), 300);
-    }
-});
