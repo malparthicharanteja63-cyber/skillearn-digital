@@ -1,0 +1,114 @@
+let currentStep = 1;
+let selectedService = "";
+let selectedPrice = "";
+let order = {};
+
+function showStep(step) {
+    currentStep = step;
+
+    document.querySelectorAll(".step").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    const counter = document.getElementById("stepCounter");
+
+    if (counter) {
+        counter.textContent = "Step " + step + " of 4";
+    }
+
+    window.scrollTo(0, 0);
+}
+
+function nextStep() {
+    showStep(currentStep + 1);
+}
+
+function prevStep() {
+    showStep(currentStep - 1);
+}
+
+function selectService(service, price) {
+    selectedService = service;
+    selectedPrice = price;
+
+    document.getElementById("selectedService").textContent = service;
+    document.getElementById("selectedPrice").textContent = price;
+
+    showStep(3);
+}
+
+function submitDetails(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const details = document.getElementById("orderDetails").value.trim();
+
+    if (!name || !phone || !details) {
+        alert("Please complete all order details.");
+        return false;
+    }
+
+    if (!selectedService) {
+        alert("Please select a service first.");
+        showStep(2);
+        return false;
+    }
+
+    order = {
+        name: name,
+        phone: phone,
+        details: details
+    };
+
+    document.getElementById("finalService").textContent = selectedService;
+    document.getElementById("finalPrice").textContent = selectedPrice;
+
+    showStep(4);
+
+    return false;
+}
+
+function sendWhatsApp() {
+    const message =
+        "Hello SkillEarn Digital!%0A%0A" +
+        "New Website / Design Enquiry%0A%0A" +
+        "Name: " + encodeURIComponent(order.name) + "%0A" +
+        "WhatsApp: " + encodeURIComponent(order.phone) + "%0A" +
+        "Service: " + encodeURIComponent(selectedService) + "%0A" +
+        "Price: " + encodeURIComponent(selectedPrice) + "%0A" +
+        "Requirements: " + encodeURIComponent(order.details);
+
+    window.open(
+        "https://wa.me/919133213727?text=" + message,
+        "_blank"
+    );
+}
+
+function goHome() {
+    selectedService = "";
+    selectedPrice = "";
+    order = {};
+
+    const form = document.querySelector("#step3 form");
+
+    if (form) {
+        form.reset();
+    }
+
+    showStep(1);
+}
+
+function showDemo(demoId) {
+    window.location.href = "demo.html?demo=" + encodeURIComponent(demoId);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    showStep(1);
+});

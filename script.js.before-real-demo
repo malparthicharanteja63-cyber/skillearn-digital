@@ -1,0 +1,199 @@
+let currentStep = 1;
+let selectedService = "";
+let selectedPrice = "";
+let order = {};
+
+function showStep(step) {
+    currentStep = step;
+
+    document.querySelectorAll(".step").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    const counter = document.getElementById("stepCounter");
+
+    if (counter) {
+        counter.textContent = "Step " + step + " of 4";
+    }
+
+    window.scrollTo(0, 0);
+}
+
+function nextStep() {
+    showStep(currentStep + 1);
+}
+
+function prevStep() {
+    showStep(currentStep - 1);
+}
+
+function selectService(service, price) {
+    selectedService = service;
+    selectedPrice = price;
+
+    document.getElementById("selectedService").textContent = service;
+    document.getElementById("selectedPrice").textContent = price;
+
+    showStep(3);
+}
+
+function submitDetails(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const details = document.getElementById("orderDetails").value.trim();
+
+    if (!name || !phone || !details) {
+        alert("Please complete all order details.");
+        return false;
+    }
+
+    if (!selectedService) {
+        alert("Please select a service first.");
+        showStep(2);
+        return false;
+    }
+
+    order = {
+        name: name,
+        phone: phone,
+        details: details
+    };
+
+    document.getElementById("finalService").textContent = selectedService;
+    document.getElementById("finalPrice").textContent = selectedPrice;
+
+    showStep(4);
+
+    return false;
+}
+
+function sendWhatsApp() {
+    const message =
+        "Hello SkillEarn Digital!%0A%0A" +
+        "New Website / Design Enquiry%0A%0A" +
+        "Name: " + encodeURIComponent(order.name) + "%0A" +
+        "WhatsApp: " + encodeURIComponent(order.phone) + "%0A" +
+        "Service: " + encodeURIComponent(selectedService) + "%0A" +
+        "Price: " + encodeURIComponent(selectedPrice) + "%0A" +
+        "Requirements: " + encodeURIComponent(order.details);
+
+    window.open(
+        "https://wa.me/919133213727?text=" + message,
+        "_blank"
+    );
+}
+
+function goHome() {
+    selectedService = "";
+    selectedPrice = "";
+    order = {};
+
+    const form = document.querySelector("#step3 form");
+
+    if (form) {
+        form.reset();
+    }
+
+    showStep(1);
+}
+
+function showDemo(demoId) {
+    const demos = {
+        demo1: {
+            title: "1-Page Landing Website",
+            text: "A modern landing page designed to turn visitors into customers.",
+            cards: ["Modern Design", "Fast Performance", "Mobile Friendly"]
+        },
+        demo2: {
+            title: "5-Page Business Website",
+            text: "A complete professional business website.",
+            cards: ["Home", "About", "Services"]
+        },
+        demo3: {
+            title: "Portfolio Website",
+            text: "Showcase your skills, projects and achievements.",
+            cards: ["Projects", "Skills", "Contact"]
+        },
+        demo4: {
+            title: "E-commerce Website",
+            text: "A professional online store for your products.",
+            cards: ["Products", "Shopping", "Checkout"]
+        },
+        demo5: {
+            title: "Custom Web Application",
+            text: "A custom web application built around your business.",
+            cards: ["Dashboard", "Features", "Users"]
+        },
+        demo6: {
+            title: "Basic Thumbnail",
+            text: "Clean and attractive thumbnail design.",
+            cards: ["Simple", "Clean", "Clickable"]
+        },
+        demo7: {
+            title: "Good-Quality Thumbnail",
+            text: "High-quality thumbnail design for your content.",
+            cards: ["Bold", "Modern", "Engaging"]
+        },
+        demo8: {
+            title: "Professional / CTR Thumbnail",
+            text: "Professional thumbnail designed to attract clicks.",
+            cards: ["CTR Focus", "Premium", "Eye-catching"]
+        },
+        demo9: {
+            title: "10 Thumbnail Package",
+            text: "Ten consistent thumbnail designs for creators.",
+            cards: ["10 Designs", "Consistent", "Creator Ready"]
+        },
+        demo10: {
+            title: "Monthly Creative Package",
+            text: "Regular monthly thumbnail and creative design service.",
+            cards: ["Monthly", "Creative", "Support"]
+        },
+        demo11: {
+            title: "Premium Monthly Package",
+            text: "Premium monthly creative service for businesses and creators.",
+            cards: ["Premium", "Monthly", "Priority"]
+        }
+    };
+
+    const demo = demos[demoId];
+
+    if (!demo) return;
+
+    document.getElementById("demoPreview").innerHTML = `
+        <div class="demo-preview">
+            <div class="badge">LIVE DEMO</div>
+            <h2>${demo.title}</h2>
+            <p>${demo.text}</p>
+            <span class="preview-btn">Get Started →</span>
+
+            <div class="preview-cards">
+                ${demo.cards.map(card => `
+                    <div class="preview-card">
+                        <h3>${card}</h3>
+                        <p>Professional quality designed for your business.</p>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+
+    document.getElementById("demoModal").classList.add("active");
+}
+
+function closeDemo() {
+    document.getElementById("demoModal").classList.remove("active");
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    showStep(1);
+});

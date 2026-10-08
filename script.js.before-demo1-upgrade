@@ -1,0 +1,405 @@
+let currentStep = 1;
+let selectedService = "";
+let selectedPrice = "";
+let order = {};
+
+function showStep(step) {
+    currentStep = step;
+
+    document.querySelectorAll(".step").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    const counter = document.getElementById("stepCounter");
+
+    if (counter) {
+        counter.textContent = "Step " + step + " of 4";
+    }
+
+    window.scrollTo(0, 0);
+}
+
+function nextStep() {
+    showStep(currentStep + 1);
+}
+
+function prevStep() {
+    showStep(currentStep - 1);
+}
+
+function selectService(service, price) {
+    selectedService = service;
+    selectedPrice = price;
+
+    document.getElementById("selectedService").textContent = service;
+    document.getElementById("selectedPrice").textContent = price;
+
+    showStep(3);
+}
+
+function submitDetails(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const details = document.getElementById("orderDetails").value.trim();
+
+    if (!name || !phone || !details) {
+        alert("Please complete all order details.");
+        return false;
+    }
+
+    if (!selectedService) {
+        alert("Please select a service first.");
+        showStep(2);
+        return false;
+    }
+
+    order = {
+        name: name,
+        phone: phone,
+        details: details
+    };
+
+    document.getElementById("finalService").textContent = selectedService;
+    document.getElementById("finalPrice").textContent = selectedPrice;
+
+    showStep(4);
+
+    return false;
+}
+
+function sendWhatsApp() {
+    const message =
+        "Hello SkillEarn Digital!%0A%0A" +
+        "New Website / Design Enquiry%0A%0A" +
+        "Name: " + encodeURIComponent(order.name) + "%0A" +
+        "WhatsApp: " + encodeURIComponent(order.phone) + "%0A" +
+        "Service: " + encodeURIComponent(selectedService) + "%0A" +
+        "Price: " + encodeURIComponent(selectedPrice) + "%0A" +
+        "Requirements: " + encodeURIComponent(order.details);
+
+    window.open(
+        "https://wa.me/919133213727?text=" + message,
+        "_blank"
+    );
+}
+
+function goHome() {
+    selectedService = "";
+    selectedPrice = "";
+    order = {};
+
+    const form = document.querySelector("#step3 form");
+
+    if (form) {
+        form.reset();
+    }
+
+    showStep(1);
+}
+
+function showDemo(demoId) {
+    const demos = {
+        demo1: {
+            brand: "SkillEarn",
+            type: "Business Website",
+            title: "Grow Your Business Online",
+            text: "A modern business website designed to build trust and turn visitors into customers.",
+            nav: ["Home", "Services", "About", "Contact"],
+            cards: ["Web Design", "Fast Performance", "Mobile Friendly"],
+            labels: ["01", "02", "03"]
+        },
+        demo2: {
+            brand: "BusinessPro",
+            type: "Corporate Website",
+            title: "Professional Business Website",
+            text: "A polished corporate experience for companies that want a stronger digital presence.",
+            nav: ["Home", "About", "Services", "Contact"],
+            cards: ["Company Profile", "Business Services", "Contact Team"],
+            labels: ["01", "02", "03"]
+        },
+        demo3: {
+            brand: "MyPortfolio",
+            type: "Portfolio Website",
+            title: "Show Your Work With Confidence",
+            text: "A clean portfolio website for freelancers, developers, designers and professionals.",
+            nav: ["Home", "Projects", "Skills", "Contact"],
+            cards: ["Featured Projects", "My Skills", "Experience"],
+            labels: ["01", "02", "03"]
+        },
+        demo4: {
+            brand: "ShopEasy",
+            type: "E-Commerce Website",
+            title: "Everything You Need",
+            text: "A modern online store experience built to make products easy to discover and buy.",
+            nav: ["Home", "Products", "Offers", "Cart"],
+            cards: ["New Products", "Best Sellers", "Special Offers"],
+            labels: ["01", "02", "03"]
+        },
+        demo5: {
+            brand: "AppFlow",
+            type: "Web Application",
+            title: "Powerful Web Application",
+            text: "A clean application dashboard designed to organize data, users and business activity.",
+            nav: ["Dashboard", "Features", "Users", "Settings"],
+            cards: ["Dashboard", "Analytics", "User Management"],
+            labels: ["01", "02", "03"]
+        },
+        demo6: {
+            brand: "CreatorPro",
+            type: "Creator Website",
+            title: "Make Every Click Count",
+            text: "Clean and professional thumbnail services created for YouTubers and content creators.",
+            nav: ["Home", "Designs", "Packages", "Contact"],
+            cards: ["Simple", "Clean", "Clickable"],
+            labels: ["01", "02", "03"]
+        },
+        demo7: {
+            brand: "CreatorPro",
+            type: "Creator Website",
+            title: "Stand Out From The Crowd",
+            text: "Bold visual design created to help creators make their content impossible to ignore.",
+            nav: ["Home", "Designs", "Packages", "Contact"],
+            cards: ["Bold", "Modern", "Engaging"],
+            labels: ["01", "02", "03"]
+        },
+        demo8: {
+            brand: "CTR Studio",
+            type: "CTR Design Studio",
+            title: "Turn Views Into Clicks",
+            text: "Thumbnail design focused on attention, clarity and stronger click-through potential.",
+            nav: ["Home", "Portfolio", "Packages", "Contact"],
+            cards: ["CTR Focus", "Premium", "Eye-catching"],
+            labels: ["01", "02", "03"]
+        },
+        demo9: {
+            brand: "ThumbnailPack",
+            type: "Thumbnail Package",
+            title: "10 Thumbnails. One Brand.",
+            text: "A consistent thumbnail package designed to give your entire channel a professional identity.",
+            nav: ["Home", "Portfolio", "Pricing", "Contact"],
+            cards: ["10 Designs", "Consistent", "Creator Ready"],
+            labels: ["10", "01", "YT"]
+        },
+        demo10: {
+            brand: "CreativeCare",
+            type: "Monthly Creative Service",
+            title: "Your Monthly Creative Partner",
+            text: "Regular creative support for creators and businesses that need fresh designs every month.",
+            nav: ["Home", "Services", "Plans", "Contact"],
+            cards: ["Monthly", "Creative", "Support"],
+            labels: ["01", "02", "03"]
+        },
+        demo11: {
+            brand: "PremiumStudio",
+            type: "Premium Creative Agency",
+            title: "Premium Creative Service",
+            text: "Priority creative support for serious creators and businesses that want premium results.",
+            nav: ["Home", "Services", "Plans", "Contact"],
+            cards: ["Premium", "Monthly", "Priority"],
+            labels: ["01", "02", "03"]
+        }
+    };
+
+    const demo = demos[demoId];
+    if (!demo) return;
+
+    const themes = {
+        demo1: "demo-business",
+        demo2: "demo-corporate",
+        demo3: "demo-portfolio",
+        demo4: "demo-shop",
+        demo5: "demo-app",
+        demo6: "demo-creator",
+        demo7: "demo-bold",
+        demo8: "demo-ctr",
+        demo9: "demo-pack",
+        demo10: "demo-monthly",
+        demo11: "demo-premium"
+    };
+
+    document.getElementById("demoPreview").innerHTML = `
+        <div class="real-demo-site ${themes[demoId]}">
+
+            <header class="real-demo-header">
+                <div class="real-demo-brand">${demo.brand}</div>
+
+                <nav>
+                    ${demo.nav.map(item =>
+                        `<button type="button" onclick="demoMessage('${item}')">${item}</button>`
+                    ).join("")}
+                </nav>
+
+                <button type="button" class="demo-top-button"
+                    onclick="demoWhatsApp('${demo.title}')">
+                    Start Project
+                </button>
+            </header>
+
+            <section class="real-demo-hero">
+
+                <div class="demo-hero-copy">
+                    <span class="badge">${demo.type} • Website Preview</span>
+
+                    <h1>${demo.title}</h1>
+
+                    <p>${demo.text}</p>
+
+                    <div class="demo-actions">
+                        <button type="button"
+                            class="real-demo-cta"
+                            onclick="demoWhatsApp('${demo.title}')">
+                            Get Started →
+                        </button>
+
+                        <button type="button"
+                            class="demo-secondary"
+                            onclick="demoMessage('${demo.nav[1]}')">
+                            Explore ${demo.nav[1]}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="demo-browser">
+                        <div class="browser-bar">
+                            <span></span><span></span><span></span>
+                        </div>
+
+                        <div class="browser-content">
+                            <div class="visual-line large"></div>
+                            <div class="visual-line"></div>
+                            <div class="visual-grid">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="real-demo-features">
+
+                <div class="demo-section-heading">
+                    <span>WHAT WE OFFER</span>
+                    <h2>Built for your goals</h2>
+                </div>
+
+                <div class="demo-feature-grid">
+
+                    ${demo.cards.map((card, index) => `
+                        <article class="real-demo-card">
+
+                            <div class="demo-icon">
+                                ${demo.labels[index]}
+                            </div>
+
+                            <h3>${card}</h3>
+
+                            <p>
+                                Professional quality designed around your
+                                business, audience and goals.
+                            </p>
+
+                            <button type="button"
+                                onclick="demoMessage('${card}')">
+                                Learn More →
+                            </button>
+
+                        </article>
+                    `).join("")}
+
+                </div>
+
+            </section>
+
+            <section class="demo-bottom-cta">
+
+                <div>
+                    <span>READY TO BUILD?</span>
+                    <h2>Let's create your website.</h2>
+                    <p>Tell SkillEarn Digital what you need and we'll discuss your project.</p>
+                </div>
+
+                <button type="button"
+                    onclick="demoWhatsApp('${demo.title}')">
+                    Get Started →
+                </button>
+
+            </section>
+
+            <footer class="real-demo-footer">
+                <strong>${demo.brand}</strong>
+                <p>Website preview created by SkillEarn Digital</p>
+            </footer>
+
+        </div>
+    `;
+
+    document.getElementById("demoModal").classList.add("active");
+}
+
+function demoMessage(item) {
+    const site = document.querySelector(".real-demo-site");
+    if (!site) return;
+    const titles = {
+        "Home": "Welcome to our website",
+        "Services": "Our Services",
+        "About": "About Our Company",
+        "Contact": "Get In Touch",
+        "Projects": "Our Projects",
+        "Skills": "Our Skills",
+        "Experience": "Our Experience",
+        "Products": "Our Products",
+        "Offers": "Special Offers",
+        "Cart": "Your Shopping Cart",
+        "Dashboard": "Your Dashboard",
+        "Features": "Powerful Features",
+        "Users": "User Management",
+        "Settings": "Account Settings",
+        "Designs": "Our Designs",
+        "Packages": "Our Packages",
+        "Portfolio": "Our Portfolio",
+        "Pricing": "Simple Pricing",
+        "Plans": "Our Plans",
+        "Get Started": "Let’s Get Started"
+    };
+    const heading = titles[item] || item;
+    const hero = site.querySelector(".real-demo-hero h1");
+    const text = site.querySelector(".real-demo-hero p");
+    if (hero) hero.textContent = heading;
+    if (text) text.textContent = "Explore this section to see how your professional website could work for your customers.";
+    site.querySelector(".real-demo-hero")?.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function closeDemo() {
+    document.getElementById("demoModal").classList.remove("active");
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    showStep(1);
+});
+
+function demoWhatsApp(service) {
+    selectedService = service;
+    selectedPrice = "Custom Quote";
+
+    const selected = document.getElementById("selectedService");
+    const price = document.getElementById("selectedPrice");
+
+    if (selected) selected.textContent = service;
+    if (price) price.textContent = selectedPrice;
+
+    closeDemo();
+    showStep(3);
+}

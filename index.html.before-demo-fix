@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillEarn Digital - Affordable digital services for creators and businesses.">
+    <title>SkillEarn Digital | Digital Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="app-header">
+        <div class="logo">SkillEarn<span>Digital</span></div>
+        <div class="step-counter" id="stepCounter">Step 1 of 4</div>
+    </header>
+
+    <main>
+
+        <!-- STEP 1 -->
+        <section class="step active" id="step1">
+            <div class="step-content">
+                <p class="eyebrow">WELCOME</p>
+
+                <h1>Build Your <span>Digital Presence.</span></h1>
+
+                <p class="intro">
+                    Professional digital services for creators,
+                    businesses and personal brands.
+                </p>
+
+                <div class="hero-showcase">
+                    <div class="showcase-top">
+                        <span>SKILLEARN DIGITAL</span>
+                        <small>CREATIVE STUDIO</small>
+                    </div>
+
+                    <div class="showcase-content">
+                        <div>
+                            <small>YOUR DIGITAL</small>
+                            <strong>IDEA →<br>REALITY</strong>
+                        </div>
+
+                        <div class="showcase-orb">
+                            ✦
+                        </div>
+                    </div>
+
+                    <div class="showcase-bottom">
+                        <span>THUMBNAILS</span>
+                        <span>VIDEOS</span>
+                        <span>DESIGNS</span>
+                        <span>WEBSITES</span>
+                    </div>
+                </div>
+
+                <button class="btn primary" onclick="nextStep()">
+                    Get Started →
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" id="step2">
+            <div class="step-content">
+                <p class="eyebrow">STEP 2</p>
+                <h2>Choose Your Service</h2>
+                <p class="intro">View a demo or select a service to get started.</p>
+
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>1-Page Landing Website</strong>
+                            <small>₹4,999</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo1')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('1-Page Landing Website', '₹4,999')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>5-Page Business Website ⭐</strong>
+                            <small>₹14,999</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo2')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('5-Page Business Website ⭐', '₹14,999')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Portfolio Website</strong>
+                            <small>₹7,999</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo3')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Portfolio Website', '₹7,999')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>E-commerce Website</strong>
+                            <small>₹29,999</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo4')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('E-commerce Website', '₹29,999')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Custom Web Application</strong>
+                            <small>₹49,999+</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo5')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Custom Web Application', '₹49,999+')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Basic Thumbnail</strong>
+                            <small>₹199</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo6')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Basic Thumbnail', '₹199')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Good-Quality Thumbnail</strong>
+                            <small>₹399</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo7')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Good-Quality Thumbnail', '₹399')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Professional / CTR Thumbnail</strong>
+                            <small>₹799</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo8')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Professional / CTR Thumbnail', '₹799')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>10 Thumbnail Package</strong>
+                            <small>₹2,999</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo9')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('10 Thumbnail Package', '₹2,999')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Monthly Creative Package</strong>
+                            <small>₹9,999/month</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo10')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Monthly Creative Package', '₹9,999/month')">Select →</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-info">
+                            <strong>Premium Monthly Package</strong>
+                            <small>₹19,999/month</small>
+                        </div>
+                        <div class="service-actions">
+                            <button type="button" class="demo-btn" onclick="showDemo('demo11')">👁 Demo</button>
+                            <button type="button" class="select-btn" onclick="selectService('Premium Monthly Package', '₹19,999/month')">Select →</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="btn secondary back-btn" type="button" onclick="prevStep()">
+                    ← Back
+                </button>
+            </div>
+        </section>
+
+<!-- STEP 3 -->
+        <section class="step" id="step3">
+            <div class="step-content form-content">
+
+                <p class="eyebrow">STEP 3</p>
+
+                <h2>Order Details</h2>
+
+                <p class="intro">
+                    Tell us what you need.
+                </p>
+
+                <div class="selected-service">
+                    <span id="selectedService">Service</span>
+                    <strong id="selectedPrice">₹0</strong>
+                </div>
+
+                <form onsubmit="submitDetails(event)">
+
+                    <label for="customerName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <label for="customerPhone">
+                        WhatsApp Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        placeholder="Enter WhatsApp number"
+                        inputmode="numeric"
+                        required
+                    >
+
+                    <label for="orderDetails">
+                        Requirements
+                    </label>
+
+                    <textarea
+                        id="orderDetails"
+                        rows="5"
+                        placeholder="Tell us what you need..."
+                        required
+                    ></textarea>
+
+                      <button type="submit" class="btn primary">Continue to WhatsApp →</button>
+
+                  </form>
+
+              </div>
+
+            </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" id="step4">
+            <div class="step-content form-content">
+                <p class="eyebrow">STEP 4</p>
+                <h2>Ready to Get Started?</h2>
+                <p class="intro">Send your requirements directly to SkillEarn Digital on WhatsApp.</p>
+                <div class="selected-service">
+                    <span id="finalService">Your Service</span>
+                    <strong id="finalPrice">₹0</strong>
+                </div>
+                <button class="btn primary" type="button" onclick="sendWhatsApp()">
+                    WhatsApp Us →
+                </button>
+                <button class="btn secondary" type="button" onclick="goHome()">
+                    ← Back to Services
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 SkillEarn Digital. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

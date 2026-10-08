@@ -1,0 +1,276 @@
+let currentStep = 1;
+let selectedService = "";
+let selectedPrice = "";
+let order = {};
+
+function showStep(step) {
+    currentStep = step;
+
+    document.querySelectorAll(".step").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    const counter = document.getElementById("stepCounter");
+
+    if (counter) {
+        counter.textContent = "Step " + step + " of 4";
+    }
+
+    window.scrollTo(0, 0);
+}
+
+function nextStep() {
+    showStep(currentStep + 1);
+}
+
+function prevStep() {
+    showStep(currentStep - 1);
+}
+
+function selectService(service, price) {
+    selectedService = service;
+    selectedPrice = price;
+
+    document.getElementById("selectedService").textContent = service;
+    document.getElementById("selectedPrice").textContent = price;
+
+    showStep(3);
+}
+
+function submitDetails(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const details = document.getElementById("orderDetails").value.trim();
+
+    if (!name || !phone || !details) {
+        alert("Please complete all order details.");
+        return false;
+    }
+
+    if (!selectedService) {
+        alert("Please select a service first.");
+        showStep(2);
+        return false;
+    }
+
+    order = {
+        name: name,
+        phone: phone,
+        details: details
+    };
+
+    document.getElementById("finalService").textContent = selectedService;
+    document.getElementById("finalPrice").textContent = selectedPrice;
+
+    showStep(4);
+
+    return false;
+}
+
+function sendWhatsApp() {
+    const message =
+        "Hello SkillEarn Digital!%0A%0A" +
+        "New Website / Design Enquiry%0A%0A" +
+        "Name: " + encodeURIComponent(order.name) + "%0A" +
+        "WhatsApp: " + encodeURIComponent(order.phone) + "%0A" +
+        "Service: " + encodeURIComponent(selectedService) + "%0A" +
+        "Price: " + encodeURIComponent(selectedPrice) + "%0A" +
+        "Requirements: " + encodeURIComponent(order.details);
+
+    window.open(
+        "https://wa.me/919133213727?text=" + message,
+        "_blank"
+    );
+}
+
+function goHome() {
+    selectedService = "";
+    selectedPrice = "";
+    order = {};
+
+    const form = document.querySelector("#step3 form");
+
+    if (form) {
+        form.reset();
+    }
+
+    showStep(1);
+}
+
+function showDemo(demoId) {
+    const demos = {
+        demo1: {
+            brand: "SkillEarn",
+            title: "Grow Your Business Online",
+            text: "A modern landing page built to turn visitors into customers.",
+            nav: ["Home", "Services", "About", "Contact"],
+            cards: ["Web Design", "Fast Performance", "Mobile Friendly"]
+        },
+        demo2: {
+            brand: "BusinessPro",
+            title: "Professional Business Website",
+            text: "Build trust with a clean, professional online presence.",
+            nav: ["Home", "About", "Services", "Contact"],
+            cards: ["Our Services", "About Company", "Get In Touch"]
+        },
+        demo3: {
+            brand: "MyPortfolio",
+            title: "Creative Portfolio",
+            text: "Showcase your skills, projects and achievements.",
+            nav: ["Home", "Projects", "Skills", "Contact"],
+            cards: ["Projects", "My Skills", "Experience"]
+        },
+        demo4: {
+            brand: "ShopEasy",
+            title: "Everything You Need",
+            text: "A modern online store designed for simple shopping.",
+            nav: ["Home", "Products", "Offers", "Cart"],
+            cards: ["New Products", "Best Sellers", "Special Offers"]
+        },
+        demo5: {
+            brand: "AppFlow",
+            title: "Powerful Web Application",
+            text: "A modern application interface designed around your business.",
+            nav: ["Dashboard", "Features", "Users", "Settings"],
+            cards: ["Dashboard", "Analytics", "User Management"]
+        },
+        demo6: {
+            brand: "CreatorPro",
+            title: "Make Every Click Count",
+            text: "Clean thumbnail design made for creators.",
+            nav: ["Home", "Designs", "Packages", "Contact"],
+            cards: ["Simple", "Clean", "Clickable"]
+        },
+        demo7: {
+            brand: "CreatorPro",
+            title: "Stand Out From The Crowd",
+            text: "High-quality thumbnails designed to grab attention.",
+            nav: ["Home", "Designs", "Packages", "Contact"],
+            cards: ["Bold", "Modern", "Engaging"]
+        },
+        demo8: {
+            brand: "CTR Studio",
+            title: "Turn Views Into Clicks",
+            text: "Professional thumbnail design focused on stronger click-through rates.",
+            nav: ["Home", "Portfolio", "Packages", "Contact"],
+            cards: ["CTR Focus", "Premium", "Eye-catching"]
+        },
+        demo9: {
+            brand: "ThumbnailPack",
+            title: "10 Thumbnails. One Brand.",
+            text: "Consistent thumbnail designs ready for your content.",
+            nav: ["Home", "Portfolio", "Pricing", "Contact"],
+            cards: ["10 Designs", "Consistent", "Creator Ready"]
+        },
+        demo10: {
+            brand: "CreativeCare",
+            title: "Your Monthly Creative Partner",
+            text: "Regular thumbnails and creative designs for growing creators.",
+            nav: ["Home", "Services", "Plans", "Contact"],
+            cards: ["Monthly", "Creative", "Support"]
+        },
+        demo11: {
+            brand: "PremiumStudio",
+            title: "Premium Creative Service",
+            text: "Priority creative support for serious businesses and creators.",
+            nav: ["Home", "Services", "Plans", "Contact"],
+            cards: ["Premium", "Monthly", "Priority"]
+        }
+    };
+
+    const demo = demos[demoId];
+    if (!demo) return;
+
+    document.getElementById("demoPreview").innerHTML = `
+        <div class="real-demo-site">
+            <header class="real-demo-header">
+                <div class="real-demo-brand">${demo.brand}</div>
+                <nav>
+                    ${demo.nav.map(item => `<button type="button" onclick="demoMessage('${item}')">${item}</button>`).join("")}
+                </nav>
+            </header>
+
+            <section class="real-demo-hero">
+                <span class="badge">Official Website Preview</span>
+                <h1>${demo.title}</h1>
+                <p>${demo.text}</p>
+                <button type="button" class="real-demo-cta" onclick="demoWhatsApp('${demo.title}')">
+                    Get Started →
+                </button>
+            </section>
+
+            <section class="real-demo-features">
+                ${demo.cards.map((card, index) => `
+                    <article class="real-demo-card">
+                        <div class="demo-icon">${index + 1}</div>
+                        <h3>${card}</h3>
+                        <p>Professional quality designed for your business and audience.</p>
+                        <button type="button" onclick="demoMessage('${card}')">Learn More</button>
+                    </article>
+                `).join("")}
+            </section>
+
+            <footer class="real-demo-footer">
+                <strong>${demo.brand}</strong>
+                <p>Demo website created by SkillEarn Digital</p>
+            </footer>
+        </div>
+    `;
+
+    document.getElementById("demoModal").classList.add("active");
+}
+
+function demoMessage(item) {
+    const site = document.querySelector(".real-demo-site");
+    if (!site) return;
+    const titles = {
+        "Home": "Welcome to our website",
+        "Services": "Our Services",
+        "About": "About Our Company",
+        "Contact": "Get In Touch",
+        "Projects": "Our Projects",
+        "Skills": "Our Skills",
+        "Experience": "Our Experience",
+        "Products": "Our Products",
+        "Offers": "Special Offers",
+        "Cart": "Your Shopping Cart",
+        "Dashboard": "Your Dashboard",
+        "Features": "Powerful Features",
+        "Users": "User Management",
+        "Settings": "Account Settings",
+        "Designs": "Our Designs",
+        "Packages": "Our Packages",
+        "Portfolio": "Our Portfolio",
+        "Pricing": "Simple Pricing",
+        "Plans": "Our Plans",
+        "Get Started": "Let’s Get Started"
+    };
+    const heading = titles[item] || item;
+    const hero = site.querySelector(".real-demo-hero h1");
+    const text = site.querySelector(".real-demo-hero p");
+    if (hero) hero.textContent = heading;
+    if (text) text.textContent = "Explore this section to see how your professional website could work for your customers.";
+    site.querySelector(".real-demo-hero")?.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function closeDemo() {
+    document.getElementById("demoModal").classList.remove("active");
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    showStep(1);
+});
+
+function demoWhatsApp(service) {
+    const message = encodeURIComponent("Hello SkillEarn Digital!\n\nI'm interested in the " + service + ".\nI viewed the website demo and would like more details.");
+    window.open("https://wa.me/919133213727?text=" + message, "_blank");
+}

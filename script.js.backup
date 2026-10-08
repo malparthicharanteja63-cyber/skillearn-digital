@@ -1,0 +1,136 @@
+let currentStep = 1;
+let selectedService = "";
+let selectedPrice = "";
+let order = {};
+
+function showStep(step) {
+    document.querySelectorAll(".step").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+    document.getElementById("stepCounter").textContent =
+        "Step " + step + " of 4";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function nextStep() {
+    if (currentStep < 4) {
+        currentStep++;
+        showStep(currentStep);
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+    }
+}
+
+function selectService(service, price) {
+    selectedService = service;
+    selectedPrice = price;
+
+    document.getElementById("selectedService").textContent = service;
+    document.getElementById("selectedPrice").textContent = price;
+
+    document.getElementById("paymentService").textContent = service;
+    document.getElementById("paymentPrice").textContent = price;
+
+    currentStep = 3;
+    showStep(currentStep);
+}
+
+function submitDetails(event) {
+    event.preventDefault();
+
+    order.name = document.getElementById("customerName").value.trim();
+    order.phone = document.getElementById("customerPhone").value.trim();
+    order.details = document.getElementById("orderDetails").value.trim();
+
+    if (!order.name || !order.phone || !order.details) {
+        alert("Please complete all order details.");
+        return;
+    }
+
+    if (!selectedService) {
+        alert("Please select a service first.");
+        currentStep = 2;
+        showStep(currentStep);
+        return;
+    }
+
+    document.getElementById("paymentService").textContent = selectedService;
+    document.getElementById("paymentPrice").textContent = selectedPrice;
+
+    currentStep = 4;
+    showStep(currentStep);
+}
+
+function confirmPayment() {
+    const paymentContent = document.getElementById("paymentContent");
+    const confirmationContent = document.getElementById("confirmationContent");
+
+    if (paymentContent) {
+        paymentContent.hidden = true;
+    }
+
+    if (confirmationContent) {
+        confirmationContent.hidden = false;
+    }
+}
+
+function sendWhatsApp() {
+    const message =
+        "Hello SkillEarn Digital!%0A%0A" +
+        "New Order Confirmation%0A%0A" +
+        "Name: " + encodeURIComponent(order.name) + "%0A" +
+        "WhatsApp: " + encodeURIComponent(order.phone) + "%0A" +
+        "Service: " + encodeURIComponent(selectedService) + "%0A" +
+        "Price: " + encodeURIComponent(selectedPrice) + "%0A" +
+        "Requirements: " + encodeURIComponent(order.details) + "%0A%0A" +
+        "Customer reports payment completed. Please verify.";
+
+    const whatsappUrl =
+        "https://wa.me/919133213727?text=" + message;
+
+    window.open(whatsappUrl, "_blank");
+}
+
+function goHome() {
+    currentStep = 1;
+    selectedService = "";
+    selectedPrice = "";
+    order = {};
+
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhone").value = "";
+    document.getElementById("orderDetails").value = "";
+
+    const paymentContent = document.getElementById("paymentContent");
+    const confirmationContent = document.getElementById("confirmationContent");
+
+    if (paymentContent) {
+        paymentContent.hidden = false;
+    }
+
+    if (confirmationContent) {
+        confirmationContent.hidden = true;
+    }
+
+    showStep(1);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    showStep(1);
+});

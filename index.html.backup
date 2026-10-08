@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillEarn Digital - Affordable digital services for creators and businesses.">
+    <title>SkillEarn Digital | Digital Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="app-header">
+        <div class="logo">SkillEarn<span>Digital</span></div>
+        <div class="step-counter" id="stepCounter">Step 1 of 4</div>
+    </header>
+
+    <main>
+
+        <!-- STEP 1 -->
+        <section class="step active" id="step1">
+            <div class="step-content">
+                <p class="eyebrow">WELCOME</p>
+
+                <h1>Build Your <span>Digital Presence.</span></h1>
+
+                <p class="intro">
+                    Professional digital services for creators,
+                    businesses and personal brands.
+                </p>
+
+                <div class="hero-showcase">
+                    <div class="showcase-top">
+                        <span>SKILLEARN DIGITAL</span>
+                        <small>CREATIVE STUDIO</small>
+                    </div>
+
+                    <div class="showcase-content">
+                        <div>
+                            <small>YOUR DIGITAL</small>
+                            <strong>IDEA →<br>REALITY</strong>
+                        </div>
+
+                        <div class="showcase-orb">
+                            ✦
+                        </div>
+                    </div>
+
+                    <div class="showcase-bottom">
+                        <span>THUMBNAILS</span>
+                        <span>VIDEOS</span>
+                        <span>DESIGNS</span>
+                        <span>WEBSITES</span>
+                    </div>
+                </div>
+
+                <button class="btn primary" onclick="nextStep()">
+                    Get Started →
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" id="step2">
+            <div class="step-content wide">
+
+                <p class="eyebrow">STEP 2</p>
+
+                <h2>Choose Your Service</h2>
+
+                <p class="intro">
+                    Select a service and see a sample of what we can create for you.
+                </p>
+
+                <div class="service-options">
+
+                    <button class="service-option" onclick="selectService('YouTube Thumbnail', '₹99')">
+                        <div class="sample-preview thumbnail-sample">
+                            <span class="sample-badge">NEW VIDEO</span>
+                            <strong>EPIC<br>CRICKET<br>FACTS</strong>
+                            <small>WATCH NOW →</small>
+                        </div>
+
+                        <div class="service-info">
+                            <strong>YouTube Thumbnail</strong>
+                            <small>₹99</small>
+                        </div>
+
+                        <span class="select-label">Select This →</span>
+                    </button>
+
+                    <button class="service-option" onclick="selectService('Short Video Editing', '₹199')">
+                        <div class="sample-preview video-sample">
+                            <span class="play-icon">▶</span>
+                            <strong>SHORT<br>VIDEO</strong>
+                            <small>00:15</small>
+                        </div>
+
+                        <div class="service-info">
+                            <strong>Short Video Editing</strong>
+                            <small>₹199</small>
+                        </div>
+
+                        <span class="select-label">Select This →</span>
+                    </button>
+
+                    <button class="service-option" onclick="selectService('Social Media Designs', '₹99')">
+                        <div class="sample-preview social-sample">
+                            <span>YOUR<br>BRAND</span>
+                            <strong>GROW<br>ONLINE</strong>
+                            <small>@YOURBRAND</small>
+                        </div>
+
+                        <div class="service-info">
+                            <strong>Social Media Designs</strong>
+                            <small>₹99</small>
+                        </div>
+
+                        <span class="select-label">Select This →</span>
+                    </button>
+
+                    <button class="service-option" onclick="selectService('Website Building', '₹999+')">
+                        <div class="sample-preview website-sample">
+                            <div class="browser-bar">
+                                <i></i><i></i><i></i>
+                            </div>
+                            <strong>YOUR<br>BUSINESS</strong>
+                            <small>MODERN WEBSITE</small>
+                        </div>
+
+                        <div class="service-info">
+                            <strong>Website Building</strong>
+                            <small>₹999+</small>
+                        </div>
+
+                        <span class="select-label">Select This →</span>
+                    </button>
+
+                </div>
+
+                <button class="btn secondary back-btn" onclick="prevStep()">
+                    ← Back
+                </button>
+
+            </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" id="step3">
+            <div class="step-content form-content">
+
+                <p class="eyebrow">STEP 3</p>
+
+                <h2>Order Details</h2>
+
+                <p class="intro">
+                    Tell us what you need.
+                </p>
+
+                <div class="selected-service">
+                    <span id="selectedService">Service</span>
+                    <strong id="selectedPrice">₹0</strong>
+                </div>
+
+                <form onsubmit="submitDetails(event)">
+
+                    <label for="customerName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <label for="customerPhone">
+                        WhatsApp Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        placeholder="Enter WhatsApp number"
+                        inputmode="numeric"
+                        required
+                    >
+
+                    <label for="orderDetails">
+                        Requirements
+                    </label>
+
+                    <textarea
+                        id="orderDetails"
+                        rows="5"
+                        placeholder="Tell us what you need..."
+                        required
+                    ></textarea>
+
+                    <button type="submit" class="btn primary">
+                        Continue to Payment →
+                    </button>
+
+                </form>
+
+                <button class="btn secondary back-btn" onclick="prevStep()">
+                    ← Back
+                </button>
+
+            </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" id="step4">
+            <div class="step-content">
+
+                <div id="paymentContent">
+                    <p class="eyebrow">STEP 4</p>
+                    <h2>Payment & Confirmation</h2>
+                    <p class="intro">Review your order and complete the payment.</p>
+
+                    <div class="payment-summary">
+                        <div>
+                            <span>Service</span>
+                            <strong id="paymentService">-</strong>
+                        </div>
+                        <div>
+                            <span>Amount</span>
+                            <strong id="paymentPrice">₹0</strong>
+                        </div>
+                    </div>
+
+                    <div class="payment-method">
+                        <span>💳</span>
+                        <h3>UPI Payment</h3>
+                        <p>Use UPI to pay for your selected service.</p>
+
+                        <div class="upi-placeholder">
+                            UPI ID: <strong>talk2sivaramakrishna1@ybl</strong>
+                        </div>
+                    </div>
+
+                    <button class="btn primary" onclick="confirmPayment()">
+                        I Have Paid →
+                    </button>
+
+                    <button class="btn secondary back-btn" onclick="prevStep()">
+                        ← Back
+                    </button>
+                </div>
+
+                <div id="confirmationContent" class="confirmation-content" hidden>
+                    <div class="success-icon">✓</div>
+
+                    <p class="eyebrow">ORDER RECEIVED</p>
+
+                    <h2>Thank You!</h2>
+
+                    <p class="intro">
+                        Your order has been recorded.
+                        Send your order details to us on WhatsApp so we can
+                        verify the payment and start your work.
+                    </p>
+
+                    <button class="btn primary" onclick="sendWhatsApp()">
+                        Send Confirmation on WhatsApp
+                    </button>
+
+                    <button class="btn secondary back-btn" onclick="goHome()">
+                        Back to Home
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 SkillEarn Digital. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

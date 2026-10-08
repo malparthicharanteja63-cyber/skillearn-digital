@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Website Demo | SkillEarn Digital</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,sans-serif;
+background:#0b0b14;
+color:#fff;
+line-height:1.6
+}
+header{
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #252538;
+position:sticky;
+top:0;
+background:#0b0b14ee;
+backdrop-filter:blur(10px);
+z-index:5
+}
+.logo{font-size:22px;font-weight:800}
+.nav{display:flex;gap:22px}
+.nav a{color:#bbb;text-decoration:none;font-size:14px}
+.hero{
+padding:100px 7%;
+text-align:center;
+background:radial-gradient(circle at top,#30286b,#0b0b14 55%)
+}
+.badge{
+display:inline-block;
+padding:7px 14px;
+border:1px solid #766cff;
+border-radius:30px;
+color:#aaa3ff;
+font-size:12px;
+font-weight:bold;
+margin-bottom:20px
+}
+h1{
+font-size:clamp(42px,7vw,76px);
+line-height:1.05;
+margin-bottom:20px
+}
+.hero p{
+max-width:650px;
+margin:auto;
+color:#b8b8c8;
+font-size:18px
+}
+.buttons{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+padding:14px 25px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block
+}
+.primary{background:#766cff;color:white}
+.secondary{border:1px solid #44445c;color:white}
+section.content{padding:80px 7%;max-width:1150px;margin:auto}
+.title{text-align:center;margin-bottom:45px}
+.title h2{font-size:36px}
+.title p{color:#999;margin-top:8px}
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
+}
+.card{
+background:#131320;
+border:1px solid #27273a;
+border-radius:18px;
+padding:28px;
+}
+.card h3{margin-bottom:10px}
+.card p{color:#999;font-size:14px}
+.icon{
+font-size:30px;
+margin-bottom:15px
+}
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:45px;
+align-items:center
+}
+.about-box{
+background:#131320;
+border:1px solid #27273a;
+border-radius:20px;
+padding:35px
+}
+.about p{color:#aaa}
+.cta{
+text-align:center;
+background:#17152c;
+border:1px solid #302b5b;
+border-radius:25px;
+padding:60px 25px
+}
+.cta h2{font-size:38px;margin-bottom:12px}
+.cta p{color:#aaa;margin-bottom:25px}
+footer{
+text-align:center;
+padding:30px;
+border-top:1px solid #252538;
+color:#777;
+font-size:13px
+}
+@media(max-width:700px){
+.nav{display:none}
+.cards{grid-template-columns:1fr}
+.about{grid-template-columns:1fr}
+.hero{padding:75px 6%}
+section.content{padding:60px 6%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">SkillEarn Digital</div>
+<nav class="nav">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="badge">1-PAGE LANDING WEBSITE • DEMO</div>
+<h1>Turn Visitors<br>Into Customers.</h1>
+<p>
+A modern, fast and professional landing page designed to showcase your business and convert visitors into customers.
+</p>
+
+<div class="buttons">
+<a class="btn primary" href="#contact">Get Started →</a>
+<a class="btn secondary" href="javascript:history.back()">← Back</a>
+</div>
+</section>
+
+<section class="content" id="services">
+<div class="title">
+<h2>Our Services</h2>
+<p>Everything your business needs online.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🌐</div>
+<h3>Modern Website</h3>
+<p>Clean and professional design that works perfectly on mobile and desktop.</p>
+</div>
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>Fast Performance</h3>
+<p>Optimized pages that load quickly and give your customers a smooth experience.</p>
+</div>
+
+<div class="card">
+<div class="icon">📈</div>
+<h3>Business Growth</h3>
+<p>Clear calls-to-action designed to help turn website visitors into customers.</p>
+</div>
+
+</div>
+</section>
+
+<section class="content" id="about">
+<div class="about">
+
+<div>
+<h2>Built For Your Business</h2>
+<p>
+Your website is often the first impression customers get.
+We create simple, attractive and professional websites that clearly communicate what you offer.
+</p>
+<br>
+<p>
+This demo represents the type of landing page you can receive from SkillEarn Digital.
+</p>
+</div>
+
+<div class="about-box">
+<h3>Why Choose Us?</h3>
+<br>
+<p>✓ Mobile Friendly</p>
+<p>✓ Modern Design</p>
+<p>✓ Fast Loading</p>
+<p>✓ Clear Call-to-Action</p>
+<p>✓ Professional Layout</p>
+</div>
+
+</div>
+</section>
+
+<section class="content" id="contact">
+<div class="cta">
+<h2>Ready To Start?</h2>
+<p>Let's build your professional online presence.</p>
+<a class="btn primary" href="https://wa.me/919133213727" target="_blank">
+WhatsApp Us →
+</a>
+</div>
+</section>
+
+<footer>
+© 2026 SkillEarn Digital • 1-Page Landing Website Demo
+</footer>
+
+</body>
+</html>
