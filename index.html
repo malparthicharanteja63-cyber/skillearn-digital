@@ -256,32 +256,26 @@
                       <button type="submit" class="btn primary">Review Order →</button>
 
                   </form>
+                <div id="orderReview" class="order-review" hidden>
+                    <p class="eyebrow">ORDER SUMMARY</p>
+                    <h2>Ready to Get Started?</h2>
+                    <p class="intro">Your details are ready. Review your service and continue on WhatsApp.</p>
+                    <div class="selected-service">
+                        <span id="finalService">Your Service</span>
+                        <strong id="finalPrice">₹0</strong>
+                    </div>
+                    <button class="btn primary" type="button" onclick="sendWhatsApp()">Send Order on WhatsApp →</button>
+                    <button class="btn secondary" type="button" onclick="askQuestion()">Ask a Question</button>
+                    <button class="btn secondary" type="button" onclick="editOrderDetails()">← Edit Details</button>
+                </div>
+
 
               </div>
 
             </div>
         </section>
 
-        <!-- STEP 4 -->
-        <section class="step" id="step4">
-            <div class="step-content form-content">
-                <p class="eyebrow">STEP 4</p>
-                <h2>Ready to Get Started?</h2>
-                <p class="intro">Send your requirements directly to SkillEarn Digital on WhatsApp.</p>
-                <div class="selected-service">
-                    <span id="finalService">Your Service</span>
-                    <strong id="finalPrice">₹0</strong>
-                </div>
-                <button class="btn primary" type="button" onclick="sendWhatsApp()">
-                    WhatsApp Us →
-                </button>
-                <button class="btn secondary" type="button" onclick="goHome()">
-                    ← Back to Services
-                </button>
-            </div>
-        </section>
-
-<div id="demoModal" class="demo-modal">
+        <div id="demoModal" class="demo-modal">
   <div class="demo-box">
     <button type="button" class="demo-close" onclick="closeDemo()">✕</button>
     <div id="demoPreview"></div>
@@ -295,7 +289,54 @@
 
 </div>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
+
+
+<!-- SkillEarn Digital Customer Assistant -->
+<div id="skillEarnAgent" class="se-agent">
+  <button id="seAgentToggle" class="se-agent-toggle" type="button"
+          aria-label="Open SkillEarn Digital Assistant"
+          aria-expanded="false">
+    <span class="se-agent-icon">✦</span>
+    <span>Ask SkillEarn</span>
+  </button>
+
+  <section id="seAgentPanel" class="se-agent-panel"
+           aria-label="SkillEarn Digital Assistant" hidden>
+    <header class="se-agent-header">
+      <div>
+        <strong>SkillEarn Assistant</strong>
+        <p>Services, prices and demos</p>
+      </div>
+      <button id="seAgentClose" type="button"
+              aria-label="Close assistant">×</button>
+    </header>
+
+    <div id="seAgentMessages" class="se-agent-messages"
+         aria-live="polite">
+      <div class="se-agent-message bot">
+        Hi! 👋 Welcome to SkillEarn Digital.
+        I can help you explore our services, prices and website demos.
+        What would you like to know?
+      </div>
+    </div>
+
+    <div class="se-agent-quick">
+      <button type="button" data-agent-question="Show me your services">Our services</button>
+      <button type="button" data-agent-question="Show me your prices">Pricing</button>
+      <button type="button" data-agent-question="How can I view demos?">View demos</button>
+    </div>
+
+    <form id="seAgentForm" class="se-agent-form">
+      <input id="seAgentInput" type="text" maxlength="400"
+             placeholder="Ask about our services..."
+             aria-label="Your question" autocomplete="off" required>
+      <button type="submit" aria-label="Send message">➤</button>
+    </form>
+    <p class="se-agent-note">For a personal quote, you can contact us on WhatsApp.</p>
+  </section>
+</div>
+<!-- End SkillEarn Digital Customer Assistant -->
 
 </body>
 </html>

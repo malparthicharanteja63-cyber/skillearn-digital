@@ -19,14 +19,26 @@ function showStep(step) {
     const counter = document.getElementById("stepCounter");
 
     if (counter) {
-        counter.textContent = "Step " + step + " of 4";
+        counter.textContent = "Step " + step + " of 3";
     }
 
     window.scrollTo(0, 0);
 }
 
 function nextStep() {
-    showStep(currentStep + 1);
+    if (currentStep === 1) {
+        showStep(2);
+        return;
+    }
+
+    if (currentStep === 2 && !selectedService) {
+        alert("Please select a service to continue.");
+        return;
+    }
+
+    if (currentStep < 3) {
+        showStep(currentStep + 1);
+    }
 }
 
 function prevStep() {
@@ -69,13 +81,21 @@ function submitDetails(event) {
 
     document.getElementById("finalService").textContent = selectedService;
     document.getElementById("finalPrice").textContent = selectedPrice;
-
-    showStep(4);
-
+    const orderForm = document.querySelector("#step3 form");
+    const review = document.getElementById("orderReview");
+    if (orderForm) orderForm.hidden = true;
+    if (review) review.hidden = false;
+    window.scrollTo(0, 0);
     return false;
 }
 
 function sendWhatsApp() {
+    if (!order.name || !order.phone || !order.details || !selectedService) {
+        alert("Please complete your order details first.");
+        showStep(selectedService ? 3 : 2);
+        return;
+    }
+
     const message =
         "Hello SkillEarn Digital!%0A%0A" +
         "New Website / Design Enquiry%0A%0A" +
@@ -100,8 +120,10 @@ function goHome() {
 
     if (form) {
         form.reset();
+        form.hidden = false;
     }
-
+    const review = document.getElementById("orderReview");
+    if (review) review.hidden = true;
     showStep(1);
 }
 
@@ -342,13 +364,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function demoWhatsApp(service) {
-    selectedService = service;
-    selectedPrice = "Custom Quote";
+    const demoServices = {
+        "A Website That Makes Your Business Look Professional": ["1-Page Landing Website", "₹4,999"],
+        "Professional Business Website": ["5-Page Business Website ⭐", "₹14,999"],
+        "Show Your Work With Confidence": ["Portfolio Website", "₹7,999"],
+        "Everything You Need In One Store": ["E-commerce Website", "₹29,999"],
+        "Powerful Business Dashboard": ["Custom Web Application", "₹49,999+"],
+        "Clean Thumbnails For Serious Creators": ["Basic Thumbnail", "₹199"],
+        "Stand Out From The Crowd": ["Good-Quality Thumbnail", "₹399"],
+        "Turn Views Into Clicks": ["Professional / CTR Thumbnail", "₹799"],
+        "10 Thumbnails. One Strong Brand.": ["10 Thumbnail Package", "₹2,999"],
+        "Your Monthly Creative Partner": ["Monthly Creative Package", "₹9,999/month"],
+        "Premium Creative Service": ["Premium Monthly Package", "₹19,999/month"]
+    };
+
+    const match = demoServices[service];
+    selectedService = match ? match[0] : service;
+    selectedPrice = match ? match[1] : "Custom Quote";
 
     const selected = document.getElementById("selectedService");
     const price = document.getElementById("selectedPrice");
 
-    if (selected) selected.textContent = service;
+    if (selected) selected.textContent = selectedService;
     if (price) price.textContent = selectedPrice;
 
     closeDemo();
@@ -364,7 +401,190 @@ document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const demoId = params.get("demo");
 
-    if (demoId && /^demo([1-5])$/.test(demoId)) {
+    if (demoId && /^demo([1-9]|1[01])$/.test(demoId)) {
         setTimeout(() => openDemoSite(demoId), 300);
     }
 });
+
+function editOrderDetails() {
+    const form = document.querySelector("#step3 form");
+    const review = document.getElementById("orderReview");
+    if (review) review.hidden = true;
+    if (form) form.hidden = false;
+    window.scrollTo(0, 0);
+}
+
+
+function askQuestion() {
+    const message = "Hello SkillEarn Digital! I have a question about your digital services and pricing. Could you please help me?";
+    window.open(
+        "https://wa.me/919133213727?text=" + encodeURIComponent(message),
+        "_blank"
+    );
+}
+
+/* SKILLEARN DIGITAL CUSTOMER ASSISTANT */
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("seAgentToggle");
+    const panel = document.getElementById("seAgentPanel");
+    const close = document.getElementById("seAgentClose");
+    const form = document.getElementById("seAgentForm");
+    const input = document.getElementById("seAgentInput");
+    const messages = document.getElementById("seAgentMessages");
+
+    if (!toggle || !panel || !form || !input || !messages) return;
+
+    const services = [
+        ["1-Page Landing Website", "₹4,999"],
+        ["5-Page Business Website", "₹14,999"],
+        ["Portfolio Website", "₹7,999"],
+        ["E-commerce Website", "₹29,999"],
+        ["Custom Web Application", "₹49,999+"],
+        ["Basic Thumbnail", "₹199"],
+        ["Good-Quality Thumbnail", "₹399"],
+        ["Professional / CTR Thumbnail", "₹799"],
+        ["10 Thumbnail Package", "₹2,999"],
+        ["Monthly Creative Package", "₹9,999/month"],
+        ["Premium Monthly Package", "₹19,999/month"]
+    ];
+
+    function addMessage(text, type) {
+        const message = document.createElement("div");
+        message.className = "se-agent-message " + type;
+        message.textContent = text;
+        messages.appendChild(message);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function openWhatsApp(message) {
+        window.open(
+            "https://wa.me/919133213727?text=" +
+            encodeURIComponent(message),
+            "_blank",
+            "noopener"
+        );
+    }
+
+    function answerQuestion(question) {
+        const q = question.toLowerCase();
+
+        if (/\b(hi|hello|hey|namaste)\b/.test(q)) {
+            return "Hello! Welcome to SkillEarn Digital. I can help with websites, thumbnails, prices, and demos. What would you like to explore?";
+        }
+
+        if (q.includes("price") || q.includes("pricing") ||
+            q.includes("cost") || q.includes("rate") ||
+            q.includes("how much")) {
+            return "Here are our current listed prices:\n\n" +
+                services.map(s => s[0] + " — " + s[1]).join("\n") +
+                "\n\nAsk us on WhatsApp for a custom requirement or quote.";
+        }
+
+        if (q.includes("thumbnail") || q.includes("youtube design")) {
+            return "Thumbnail services:\n\n" +
+                services.filter(s => /thumbnail/i.test(s[0]))
+                    .map(s => s[0] + " — " + s[1]).join("\n") +
+                "\n\nTell me your channel or design requirements, and I can guide you.";
+        }
+
+        if (q.includes("demo") || q.includes("sample") ||
+            q.includes("portfolio")) {
+            return "To explore our samples, close this chat and use the demo options on the SkillEarn Digital website. You can then return here to ask about a service.";
+        }
+
+        if (q.includes("ecommerce") || q.includes("e-commerce") ||
+            q.includes("online store") || q.includes("sell products")) {
+            return "Recommended for you: E-commerce Website — ₹29,999.\n\n" +
+                "A suitable option for a business that wants to sell products online. " +
+                "Tell us what products you sell and what features you need.\n\n" +
+                "View our website samples or contact us on WhatsApp for a project discussion.";
+        }
+
+        if (q.includes("portfolio")) {
+            return "Recommended for you: Portfolio Website — ₹7,999.\n\n" +
+                "A good option for showcasing your work, skills, projects, or personal brand.\n\n" +
+                "Would you like to explore our samples or discuss your requirements on WhatsApp?";
+        }
+
+        if (q.includes("landing page") || q.includes("landing website")) {
+            return "Recommended for you: 1-Page Landing Website — ₹4,999.\n\n" +
+                "A focused one-page website for presenting a service, product, or offer.\n\n" +
+                "Tell us what you want to promote, and we can discuss the right layout.";
+        }
+
+        if (q.includes("business website") || q.includes("professional website") ||
+            q.includes("company website") || q.includes("website for my business")) {
+            return "Recommended for you: 5-Page Business Website — ₹14,999.\n\n" +
+                "A professional multi-page website for introducing your business, services, and contact details.\n\n" +
+                "To guide you better, what type of business do you run? You can also contact us on WhatsApp to discuss your requirements.";
+        }
+
+        if (q.includes("web app") || q.includes("web application")) {
+            return "Recommended for custom functionality: Custom Web Application — ₹49,999+.\n\n" +
+                "The final price depends on the features and complexity. Tell us what you want the application to do, and we can discuss your requirements.";
+        }
+
+        if (q.includes("website") || q.includes("web design") ||
+            q.includes("site")) {
+            return "Website services:\n\n" +
+                services.filter(s => /website|application/i.test(s[0]))
+                    .map(s => s[0] + " — " + s[1]).join("\n") +
+                "\n\nTell me what type of website you need, and I can recommend an option. You can also explore our website samples.";
+        }
+
+
+        if (q.includes("whatsapp") || q.includes("contact") ||
+            q.includes("human") || q.includes("quote") ||
+            q.includes("order") || q.includes("talk")) {
+            openWhatsApp("Hello SkillEarn Digital! I need help choosing a digital service. Please assist me.");
+            return "I have opened WhatsApp for you. Send your message there to discuss your requirements.";
+        }
+
+        if (q.includes("monthly") || q.includes("package")) {
+            return "Our monthly creative packages are:\n\n" +
+                services.filter(s => /monthly|package/i.test(s[0]))
+                    .map(s => s[0] + " — " + s[1]).join("\n") +
+                "\n\nContact us on WhatsApp to discuss what is included for your needs.";
+        }
+
+        return "I can help with website services, thumbnails, pricing, and demos. Try asking “Show me your prices” or “I need a website”. For a personal answer, contact our team on WhatsApp.";
+    }
+
+    function submitQuestion(question) {
+        const cleanQuestion = question.trim();
+        if (!cleanQuestion) return;
+
+        addMessage(cleanQuestion, "user");
+        const reply = answerQuestion(cleanQuestion);
+        addMessage(reply, "bot");
+    }
+
+    toggle.addEventListener("click", function () {
+        const opening = panel.hidden;
+        panel.hidden = !opening;
+        toggle.setAttribute("aria-expanded", String(opening));
+        if (opening) input.focus();
+    });
+
+    if (close) {
+        close.addEventListener("click", function () {
+            panel.hidden = true;
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.focus();
+        });
+    }
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitQuestion(input.value);
+        input.value = "";
+        input.focus();
+    });
+
+    document.querySelectorAll("[data-agent-question]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            submitQuestion(button.getAttribute("data-agent-question") || "");
+        });
+    });
+});
+/* END SKILLEARN DIGITAL CUSTOMER ASSISTANT */
